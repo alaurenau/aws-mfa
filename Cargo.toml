@@ -5,3 +5,5 @@ authors = ["Anton Laurenau <alaurenau@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+dirs = "1.0"
+rust-ini = "0.13"
