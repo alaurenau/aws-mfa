@@ -4,6 +4,10 @@ version = "0.1.0"
 authors = ["Anton Laurenau <alaurenau@gmail.com>"]
 edition = "2018"
 
+[profile.release]
+lto = true
+panic = 'abort'
+
 [dependencies]
 dirs = "1.0"
 rust-ini = "0.13"
