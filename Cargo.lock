@@ -1,0 +1,4 @@
+[[package]]
+name = "aws-mfa"
+version = "0.1.0"
+
