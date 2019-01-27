@@ -1,0 +1,43 @@
+image: rust:1.32
+
+stages:
+  - test
+  - build
+
+variables:
+
+before_script:
+  - rustup --version
+  - rustc --version
+  - cargo --version
+
+test:
+  stage: test
+  script:
+    - cargo test --all --verbose
+
+release-linux:
+  stage: build
+  script:
+    - cargo build --release --verbose --target x86_64-unknown-linux-gnu
+    - cp target/x86_64-unknown-linux-gnu/release/aws-mfa .
+  artifacts:
+    paths:
+      - aws-mfa
+  only:
+    - master
+
+release-windows:
+  stage: build
+  before_script:
+    - apt-get update && apt-get install -y gcc-mingw-w64
+    - rustup target add x86_64-pc-windows-gnu
+    - cat cargo-windows-config.txt >> /usr/local/cargo/config
+  script:
+    - cargo build --release --verbose --target x86_64-pc-windows-gnu
+    - cp target/x86_64-pc-windows-gnu/release/aws-mfa.exe .
+  artifacts:
+    paths:
+      - aws-mfa.exe
+  only:
+    - master
