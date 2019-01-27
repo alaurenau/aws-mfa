@@ -21,6 +21,7 @@ release-linux:
   script:
     - cargo build --release --verbose --target x86_64-unknown-linux-gnu
     - cp target/x86_64-unknown-linux-gnu/release/aws-mfa .
+    - strip aws-mfa
   artifacts:
     paths:
       - aws-mfa
@@ -36,6 +37,7 @@ release-windows:
   script:
     - cargo build --release --verbose --target x86_64-pc-windows-gnu
     - cp target/x86_64-pc-windows-gnu/release/aws-mfa.exe .
+    - strip aws-mfa.exe
   artifacts:
     paths:
       - aws-mfa.exe
